@@ -38,6 +38,41 @@
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
+
+        var centerMarker = L.marker([-1.6585, 29.2204]).addTo(map);
+
+        var circle = L.circle([-1.6585, 29.2104], {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 500
+        }).addTo(map);
+
+        var polygon = L.polygon([
+            [-1.6585, 29.2204],
+            [-1.6590, 29.2210],
+            [-1.6580, 29.2220]
+        ]).addTo(map);
+
+        polygon.bindPopup("Hospital in Goma, DRC.");
+
+        var popup = L.popup()
+            .setLatLng(map.getCenter())
+            .setContent("Map of Goma, Democratic Republic of Congo.")
+            .openOn(map);
+
+        var popup_2 = L.popup();
+
+        function onMapClick(e) {
+            popup_2
+                .setLatLng(e.latlng)
+                .setContent("Lat, Long" + e.latlng.toString())
+                .openOn(map);
+        }
+        map.on('click', onMapClick);    
+
+
+        
     </script>
 
 </body>
